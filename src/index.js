@@ -19,6 +19,9 @@ import {
   failingContractAbi,
   failingContractBytecode,
 } from './constants.json';
+import { injectScript } from './injectScript';
+
+injectScript();
 
 let ethersProvider;
 let hstFactory;
