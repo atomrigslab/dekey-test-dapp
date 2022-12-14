@@ -18,6 +18,19 @@ export const injectScript = () => {
     container.removeChild(scriptTag);
 
     window._dekeySetupProvider();
+
+    // TODO: request to wallet to check if wallet exists
+    // If it does not exist, route to wallet page?
+    const btn = document.createElement('button');
+    btn.innerHTML = 'Wallet';
+    btn.type = 'submit';
+    btn.name = 'formBtn';
+    btn.onclick = function () {
+      // request to wallet module to route to wallet page or something
+      // window.ethereum.request({ method: 'eth_requestAccounts' });
+      window.ethereum.request({ method: 'toggle_wallet' });
+    };
+    document.body.insertBefore(btn, document.body.firstChild);
   } catch (err) {
     console.error('Dekey script injection failed', err);
   }

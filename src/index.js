@@ -436,7 +436,8 @@ const initialize = async () => {
       contractStatus.innerHTML = 'Deposit initiated';
       const result = await piggybankContract.deposit({
         from: accounts[0],
-        value: '0x3782dace9d900000',
+        value: '0x17D78400',
+        // value: '0x3782dace9d900000',
       });
       console.log(result);
       const receipt = await result.wait();
@@ -445,7 +446,8 @@ const initialize = async () => {
     };
 
     withdrawButton.onclick = async () => {
-      const result = await piggybankContract.withdraw('0xde0b6b3a7640000', {
+      // '0xde0b6b3a7640000'
+      const result = await piggybankContract.withdraw('0x17D78400', {
         from: accounts[0],
       });
       console.log(result);
