@@ -1,6 +1,6 @@
 import { inpageBundle } from './inpage';
 
-export const injectScript = () => {
+export const injectScript = (walletButtonVisible = true) => {
   try {
     console.log('injectScript called');
     const container = document.head || document.documentElement;
@@ -21,6 +21,10 @@ export const injectScript = () => {
 
     // TODO: request to wallet to check if wallet exists
     // If it does not exist, route to wallet page?
+
+    if (!walletButtonVisible) {
+      return;
+    }
     const btn = document.createElement('button');
     btn.innerHTML = 'Wallet';
     btn.type = 'submit';
