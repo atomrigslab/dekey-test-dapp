@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@atomrigslab/dekey-web-wallet-provider@0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@atomrigslab/dekey-web-wallet-provider/-/dekey-web-wallet-provider-0.0.1.tgz#84ec679374259b5239993691e2ace16d02d71e35"
-  integrity sha512-uTgA66p2lqZjclT1Xn8j7yTtPtvhwt64xs373FEDR0LRzS2KhnSnnwYLLRAa6Aq4Uk9CKkW52Evy/mn1KsLHQQ==
+"@atomrigslab/dekey-web-wallet-provider@0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@atomrigslab/dekey-web-wallet-provider/-/dekey-web-wallet-provider-0.0.4.tgz#d97388ef6cc2b97a2c13d02a7bfe53d15c6e416e"
+  integrity sha512-DpknUcsR9bw26ZSujH8BsEk9cmXkcvhhXvkMv6loEztDdTyYsC0GWE1Dd5riFIygB1ZKYdD+Iu0OX4pq6yZ1Ag==
   dependencies:
     "@skilm/providers" "^0.0.2"
 
