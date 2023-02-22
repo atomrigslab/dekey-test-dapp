@@ -9,6 +9,7 @@ import {
 } from 'eth-sig-util';
 import { ethers } from 'ethers';
 import { toChecksumAddress } from 'ethereumjs-util';
+import { init } from '@atomrigslab/dekey-web-wallet-provider';
 import {
   hstBytecode,
   hstAbi,
@@ -19,9 +20,11 @@ import {
   failingContractAbi,
   failingContractBytecode,
 } from './constants.json';
-import { injectScript } from './injectScript';
 
-injectScript();
+init();
+
+// import { injectScript } from './injectScript';
+// injectScript();
 
 let ethersProvider;
 let hstFactory;
