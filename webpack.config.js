@@ -2,7 +2,7 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
-const DOCS = path.resolve(__dirname, 'docs');
+const DIST = path.resolve(__dirname, 'dist');
 
 module.exports = {
   devtool: 'eval-source-map',
@@ -10,11 +10,11 @@ module.exports = {
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',
-    path: DOCS,
-    publicPath: DOCS,
+    path: DIST,
+    publicPath: DIST,
   },
   devServer: {
-    contentBase: DOCS,
+    contentBase: DIST,
     port: 9011,
     writeToDisk: true,
   },
