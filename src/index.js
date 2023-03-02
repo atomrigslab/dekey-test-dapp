@@ -387,7 +387,7 @@ const initialize = async () => {
           rpcUrls: ['https://api.avax.network/ext/bc/C/rpc'],
           chainName: 'Avalanche',
           nativeCurrency: { name: 'AVAX', decimals: 18, symbol: 'AVAX' },
-          blockExplorerUrls: 'https://snowtrace.io',
+          blockExplorerUrls: ['https://snowtrace.io'],
           // rpcUrls: ['https://127.0.0.1:8546'],
           // blockExplorerUrls: null,
         },
