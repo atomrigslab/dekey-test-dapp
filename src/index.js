@@ -383,11 +383,13 @@ const initialize = async () => {
       method: 'wallet_addEthereumChain',
       params: [
         {
-          chainId: '0x53a',
-          rpcUrls: ['http://127.0.0.1:8546'],
-          chainName: 'Localhost 8546',
-          nativeCurrency: { name: 'TEST', decimals: 18, symbol: 'TEST' },
-          blockExplorerUrls: null,
+          chainId: '0xa86a',
+          rpcUrls: ['https://api.avax.network/ext/bc/C/rpc'],
+          chainName: 'Avalanche',
+          nativeCurrency: { name: 'AVAX', decimals: 18, symbol: 'AVAX' },
+          blockExplorerUrls: 'https://snowtrace.io',
+          // rpcUrls: ['https://127.0.0.1:8546'],
+          // blockExplorerUrls: null,
         },
       ],
     });
