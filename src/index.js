@@ -400,7 +400,7 @@ const initialize = async () => {
       method: 'wallet_switchEthereumChain',
       params: [
         {
-          chainId: '0x53a',
+          chainId: '0x1',
         },
       ],
     });
