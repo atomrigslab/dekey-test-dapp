@@ -1,4 +1,3 @@
-import MetaMaskOnboarding from '@metamask/onboarding';
 // eslint-disable-next-line camelcase
 import {
   encrypt,
@@ -21,11 +20,6 @@ import {
   failingContractBytecode,
 } from './constants.json';
 
-// init();
-
-// import { injectScript } from './injectScript';
-// injectScript();
-
 window.initializeDekeyProvider();
 
 let ethersProvider;
@@ -38,13 +32,11 @@ let piggybankContract;
 let collectiblesContract;
 let failingContract;
 
-const currentUrl = new URL(window.location.href);
-const forwarderOrigin =
-  currentUrl.hostname === 'localhost' ? 'http://localhost:9010' : undefined;
+// const currentUrl = new URL(window.location.href);
+// const forwarderOrigin =
+//   currentUrl.hostname === 'localhost' ? 'http://localhost:9010' : undefined;
 const urlSearchParams = new URLSearchParams(window.location.search);
 const deployedContractAddress = urlSearchParams.get('contract');
-
-const { isMetaMaskInstalled } = MetaMaskOnboarding;
 
 // Dapp Status Section
 const networkDiv = document.getElementById('network');
@@ -175,7 +167,7 @@ const switchEthereumChain = document.getElementById('switchEthereumChain');
 const initialize = async () => {
   try {
     // We must specify the network as 'any' for ethers to allow network changes
-    ethersProvider = new ethers.providers.Web3Provider(window.ethereum, 'any');
+    ethersProvider = new ethers.providers.Web3Provider(window.dekey, 'any');
     if (deployedContractAddress) {
       hstContract = new ethers.Contract(
         deployedContractAddress,
@@ -222,12 +214,12 @@ const initialize = async () => {
     console.error(error);
   }
 
-  let onboarding;
-  try {
-    onboarding = new MetaMaskOnboarding({ forwarderOrigin });
-  } catch (error) {
-    console.error(error);
-  }
+  // let onboarding;
+  // try {
+  //   onboarding = new MetaMaskOnboarding({ forwarderOrigin });
+  // } catch (error) {
+  //   console.error(error);
+  // }
 
   let accounts;
   let accountButtonsInitialized = false;
@@ -274,17 +266,13 @@ const initialize = async () => {
     siweMalformed,
   ];
 
-  const isMetaMaskConnected = () => accounts && accounts.length > 0;
+  // const isMetaMaskConnected = () => accounts && accounts.length > 0;
 
-  const onClickInstall = () => {
-    onboardButton.innerText = 'Onboarding in progress';
-    onboardButton.disabled = true;
-    onboarding.startOnboarding();
-  };
+  const isDekeyConnected = () => true;
 
   const onClickConnect = async () => {
     try {
-      const newAccounts = await ethereum.request({
+      const newAccounts = await dekey.request({
         method: 'eth_requestAccounts',
       });
       handleNewAccounts(newAccounts);
@@ -301,8 +289,7 @@ const initialize = async () => {
   };
 
   const updateButtons = () => {
-    const accountButtonsDisabled =
-      !isMetaMaskInstalled() || !isMetaMaskConnected();
+    const accountButtonsDisabled = !isDekeyConnected();
     if (accountButtonsDisabled) {
       for (const button of accountButtons) {
         button.disabled = true;
@@ -329,21 +316,15 @@ const initialize = async () => {
       siweMalformed.disabled = false;
     }
 
-    if (isMetaMaskInstalled()) {
-      addEthereumChain.disabled = false;
-      switchEthereumChain.disabled = false;
-    } else {
-      onboardButton.innerText = 'Click here to install MetaMask!';
-      onboardButton.onclick = onClickInstall;
-      onboardButton.disabled = false;
-    }
+    addEthereumChain.disabled = false;
+    switchEthereumChain.disabled = false;
 
-    if (isMetaMaskConnected()) {
+    if (isDekeyConnected()) {
       onboardButton.innerText = 'Connected';
       onboardButton.disabled = true;
-      if (onboarding) {
-        onboarding.stopOnboarding();
-      }
+      // if (onboarding) {
+      //   onboarding.stopOnboarding();
+      // }
     } else {
       onboardButton.innerText = 'Connect';
       onboardButton.onclick = onClickConnect;
@@ -379,7 +360,7 @@ const initialize = async () => {
   };
 
   addEthereumChain.onclick = async () => {
-    await ethereum.request({
+    await dekey.request({
       method: 'wallet_addEthereumChain',
       params: [
         {
@@ -396,7 +377,7 @@ const initialize = async () => {
   };
 
   switchEthereumChain.onclick = async () => {
-    await ethereum.request({
+    await dekey.request({
       method: 'wallet_switchEthereumChain',
       params: [
         {
@@ -491,7 +472,7 @@ const initialize = async () => {
 
     sendFailingButton.onclick = async () => {
       try {
-        const result = await ethereum.request({
+        const result = await dekey.request({
           method: 'eth_sendTransaction',
           params: [
             {
@@ -621,7 +602,7 @@ const initialize = async () => {
      */
 
     sendButton.onclick = async () => {
-      const result = await ethereum.request({
+      const result = await dekey.request({
         method: 'eth_sendTransaction',
         params: [
           {
@@ -638,7 +619,7 @@ const initialize = async () => {
     };
 
     sendEIP1559Button.onclick = async () => {
-      const result = await ethereum.request({
+      const result = await dekey.request({
         method: 'eth_sendTransaction',
         params: [
           {
@@ -691,7 +672,7 @@ const initialize = async () => {
     };
 
     watchAsset.onclick = async () => {
-      const result = await ethereum.request({
+      const result = await dekey.request({
         method: 'wallet_watchAsset',
         params: {
           type: 'ERC20',
@@ -760,7 +741,7 @@ const initialize = async () => {
 
     requestPermissionsButton.onclick = async () => {
       try {
-        const permissionsArray = await ethereum.request({
+        const permissionsArray = await dekey.request({
           method: 'wallet_requestPermissions',
           params: [{ eth_accounts: {} }],
         });
@@ -774,7 +755,7 @@ const initialize = async () => {
 
     getPermissionsButton.onclick = async () => {
       try {
-        const permissionsArray = await ethereum.request({
+        const permissionsArray = await dekey.request({
           method: 'wallet_getPermissions',
         });
         permissionsResult.innerHTML =
@@ -787,7 +768,7 @@ const initialize = async () => {
 
     getAccountsButton.onclick = async () => {
       try {
-        const _accounts = await ethereum.request({
+        const _accounts = await dekey.request({
           method: 'eth_accounts',
         });
         getAccountsResults.innerHTML =
@@ -804,7 +785,7 @@ const initialize = async () => {
 
     getEncryptionKeyButton.onclick = async () => {
       try {
-        encryptionKeyDisplay.innerText = await ethereum.request({
+        encryptionKeyDisplay.innerText = await dekey.request({
           method: 'eth_getEncryptionPublicKey',
           params: [accounts[0]],
         });
@@ -848,9 +829,9 @@ const initialize = async () => {
 
     decryptButton.onclick = async () => {
       try {
-        cleartextDisplay.innerText = await ethereum.request({
+        cleartextDisplay.innerText = await dekey.request({
           method: 'eth_decrypt',
-          params: [ciphertextDisplay.innerText, ethereum.selectedAddress],
+          params: [ciphertextDisplay.innerText, dekey.selectedAddress],
         });
       } catch (error) {
         cleartextDisplay.innerText = `Error: ${error.message}`;
@@ -896,7 +877,7 @@ const initialize = async () => {
         },
       ];
     }
-    const result = await ethereum.request({
+    const result = await dekey.request({
       method: 'eth_sendTransaction',
       params,
     });
@@ -912,7 +893,7 @@ const initialize = async () => {
       // const msgHash = keccak256(msg)
       const msg =
         '0x879a053d4800c6354e76c7985a865d2922c82fb5b3f4577b2fe08b998954f2e0';
-      const ethResult = await ethereum.request({
+      const ethResult = await dekey.request({
         method: 'eth_sign',
         params: [accounts[0], msg],
       });
@@ -931,7 +912,7 @@ const initialize = async () => {
     try {
       const from = accounts[0];
       const msg = `0x${Buffer.from(exampleMessage, 'utf8').toString('hex')}`;
-      const sign = await ethereum.request({
+      const sign = await dekey.request({
         method: 'personal_sign',
         params: [msg, from, 'Example password'],
       });
@@ -951,7 +932,7 @@ const initialize = async () => {
     try {
       const from = accounts[0];
       const msg = `0x${Buffer.from(siweMessage, 'utf8').toString('hex')}`;
-      const sign = await ethereum.request({
+      const sign = await dekey.request({
         method: 'personal_sign',
         params: [msg, from, 'Example password'],
       });
@@ -1034,7 +1015,7 @@ const initialize = async () => {
         );
         console.log(`Failed comparing ${recoveredAddr} to ${from}`);
       }
-      const ecRecoverAddr = await ethereum.request({
+      const ecRecoverAddr = await dekey.request({
         method: 'personal_ecRecover',
         params: [msg, sign],
       });
@@ -1071,7 +1052,7 @@ const initialize = async () => {
     ];
     try {
       const from = accounts[0];
-      const sign = await ethereum.request({
+      const sign = await dekey.request({
         method: 'eth_signTypedData',
         params: [msgParams, from],
       });
@@ -1166,7 +1147,7 @@ const initialize = async () => {
     };
     try {
       const from = accounts[0];
-      const sign = await ethereum.request({
+      const sign = await dekey.request({
         method: 'eth_signTypedData_v3',
         params: [from, JSON.stringify(msgParams)],
       });
@@ -1301,7 +1282,7 @@ const initialize = async () => {
     };
     try {
       const from = accounts[0];
-      const sign = await ethereum.request({
+      const sign = await dekey.request({
         method: 'eth_signTypedData_v4',
         params: [from, JSON.stringify(msgParams)],
       });
@@ -1391,13 +1372,14 @@ const initialize = async () => {
   };
 
   function handleNewAccounts(newAccounts) {
+    console.log('handleNewAccounts', newAccounts);
     accounts = newAccounts;
     accountsDiv.innerHTML = accounts;
     fromDiv.value = accounts;
     gasPriceDiv.style.display = 'block';
     maxFeeDiv.style.display = 'none';
     maxPriorityDiv.style.display = 'none';
-    if (isMetaMaskConnected()) {
+    if (isDekeyConnected()) {
       initializeAccountButtons();
     }
     updateButtons();
@@ -1431,17 +1413,17 @@ const initialize = async () => {
 
   async function getNetworkAndChainId() {
     try {
-      const chainId = await ethereum.request({
+      const chainId = await dekey.request({
         method: 'eth_chainId',
       });
       handleNewChain(chainId);
 
-      const networkId = await ethereum.request({
+      const networkId = await dekey.request({
         method: 'net_version',
       });
       handleNewNetwork(networkId);
 
-      const block = await ethereum.request({
+      const block = await dekey.request({
         method: 'eth_getBlockByNumber',
         params: ['latest', false],
       });
@@ -1454,45 +1436,43 @@ const initialize = async () => {
 
   updateButtons();
 
-  if (isMetaMaskInstalled()) {
-    ethereum.autoRefreshOnNetworkChange = false;
-    getNetworkAndChainId();
+  dekey.autoRefreshOnNetworkChange = false;
+  getNetworkAndChainId();
 
-    ethereum.autoRefreshOnNetworkChange = false;
-    getNetworkAndChainId();
+  dekey.autoRefreshOnNetworkChange = false;
+  getNetworkAndChainId();
 
-    ethereum.on('chainChanged', (chain) => {
-      handleNewChain(chain);
-      ethereum
-        .request({
-          method: 'eth_getBlockByNumber',
-          params: ['latest', false],
-        })
-        .then((block) => {
-          handleEIP1559Support(block.baseFeePerGas !== undefined);
-        });
-    });
-    ethereum.on('chainChanged', handleNewNetwork);
-    ethereum.on('accountsChanged', (newAccounts) => {
-      ethereum
-        .request({
-          method: 'eth_getBlockByNumber',
-          params: ['latest', false],
-        })
-        .then((block) => {
-          handleEIP1559Support(block.baseFeePerGas !== undefined);
-        });
-      handleNewAccounts(newAccounts);
-    });
-
-    try {
-      const newAccounts = await ethereum.request({
-        method: 'eth_accounts',
+  dekey.on('chainChanged', (chain) => {
+    handleNewChain(chain);
+    dekey
+      .request({
+        method: 'eth_getBlockByNumber',
+        params: ['latest', false],
+      })
+      .then((block) => {
+        handleEIP1559Support(block.baseFeePerGas !== undefined);
       });
-      handleNewAccounts(newAccounts);
-    } catch (err) {
-      console.error('Error on init when getting accounts', err);
-    }
+  });
+  dekey.on('chainChanged', handleNewNetwork);
+  dekey.on('accountsChanged', (newAccounts) => {
+    dekey
+      .request({
+        method: 'eth_getBlockByNumber',
+        params: ['latest', false],
+      })
+      .then((block) => {
+        handleEIP1559Support(block.baseFeePerGas !== undefined);
+      });
+    handleNewAccounts(newAccounts);
+  });
+
+  try {
+    const newAccounts = await dekey.request({
+      method: 'eth_accounts',
+    });
+    handleNewAccounts(newAccounts);
+  } catch (err) {
+    console.error('Error on init when getting accounts', err);
   }
 };
 

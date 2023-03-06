@@ -6,7 +6,7 @@ module.exports = {
   },
 
   globals: {
-    ethereum: 'readonly',
+    dekey: 'readonly',
   },
 
   extends: ['@metamask/eslint-config', '@metamask/eslint-config-nodejs'],

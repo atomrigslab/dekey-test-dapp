@@ -2,17 +2,17 @@
 # yarn lockfile v1
 
 
-"@atomrigslab/dekey-web-wallet-provider@0.0.6":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@atomrigslab/dekey-web-wallet-provider/-/dekey-web-wallet-provider-0.0.6.tgz#664e2247e4051446f6c0100a2bb3a7ff1a2bcd9b"
-  integrity sha512-Ov+jss0+E8FoQmfAD+mHM7hUrrI5b8FZUdvJmfh8CirS7cCKw8X+V716/UIiP1II3o5Y0xoSiwYKIHFgk2qAeA==
+"@atomrigslab/dekey-web-wallet-provider@0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@atomrigslab/dekey-web-wallet-provider/-/dekey-web-wallet-provider-0.0.7.tgz#45bdcaf8e276a4db004f9ec6c283854c94df9376"
+  integrity sha512-yomJX7CtrE8q1afjitS7mnWSFzHx1wSsUapCuNXKoAKtVxcNECnzKplWWUnS/DQDkQNmvcUeMidYISdhIeN6Aw==
   dependencies:
-    "@atomrigslab/providers" "^0.0.2"
+    "@atomrigslab/providers" "0.0.3"
 
-"@atomrigslab/providers@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@atomrigslab/providers/-/providers-0.0.2.tgz#0c18ed7857a5165c87a89c4b5ffe2021bd249596"
-  integrity sha512-zahhrjzrZ+XeBFcdxMeddk3ZEzl/bAbD0opOvnjk6tj3P9s4/CCLQcOr9Vctc5FAiFpQE7TC2ZJdcrkOTG1yXg==
+"@atomrigslab/providers@0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@atomrigslab/providers/-/providers-0.0.3.tgz#52d701631b30b7743fe3cc20757fae520a06a1f8"
+  integrity sha512-YqA/iY4OAiN2nn328Z6/VOML5KtO+7B9GhlRnZVHXGRRQhTkNPSsyZyxh5nP5G+sQp1sQycVlyUVrHrfyGgZCw==
   dependencies:
     "@metamask/object-multiplex" "^1.1.0"
     "@metamask/safe-event-emitter" "^2.0.0"
