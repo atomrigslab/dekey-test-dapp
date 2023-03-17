@@ -20,7 +20,7 @@ import {
   failingContractBytecode,
 } from './constants.json';
 
-const WALLET_URI = 'http://localhost:5173/wallet';
+const WALLET_URI = 'http://localhost:5173/dapp-redirected';
 window.initializeDekeyProvider(WALLET_URI);
 
 let ethersProvider;
