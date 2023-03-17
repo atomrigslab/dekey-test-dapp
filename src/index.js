@@ -20,7 +20,8 @@ import {
   failingContractBytecode,
 } from './constants.json';
 
-window.initializeDekeyProvider();
+const WALLET_URI = 'http://localhost:5173/wallet';
+window.initializeDekeyProvider(WALLET_URI);
 
 let ethersProvider;
 let hstFactory;
