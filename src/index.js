@@ -21,8 +21,7 @@ import {
 } from './constants.json';
 
 // eslint-disable-next-line node/no-process-env
-const WALLET_URI = `${process.env.WALLET_URI}/dapp-redirected`;
-window.initializeDekeyProvider(WALLET_URI);
+window.initializeDekeyProvider(process.env.WALLET_DOMAIN);
 
 let ethersProvider;
 let hstFactory;
