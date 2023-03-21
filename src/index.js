@@ -20,7 +20,8 @@ import {
   failingContractBytecode,
 } from './constants.json';
 
-const WALLET_URI = 'http://localhost:5173/dapp-redirected';
+// eslint-disable-next-line node/no-process-env
+const WALLET_URI = `${process.env.WALLET_URI}/dapp-redirected`;
 window.initializeDekeyProvider(WALLET_URI);
 
 let ethersProvider;
@@ -269,7 +270,7 @@ const initialize = async () => {
 
   // const isMetaMaskConnected = () => accounts && accounts.length > 0;
 
-  const isDekeyConnected = () => true;
+  const isDekeyConnected = () => window.location !== window.parent.location;
 
   const onClickConnect = async () => {
     try {

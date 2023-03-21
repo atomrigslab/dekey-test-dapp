@@ -1,6 +1,7 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const DOCS = path.resolve(__dirname, 'docs');
 
@@ -19,8 +20,8 @@ module.exports = {
     writeToDisk: true,
   },
   plugins: [
+    new Dotenv(),
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
-
     // for build scripts
     new CopyPlugin({
       patterns: [
