@@ -310,14 +310,14 @@ const initialize = async () => {
       signTypedData.disabled = false;
       signTypedDataV3.disabled = false;
       signTypedDataV4.disabled = false;
-      siwe.disabled = false;
-      siweResources.disabled = false;
-      siweBadDomain.disabled = false;
-      siweBadAccount.disabled = false;
-      siweMalformed.disabled = false;
+      // siwe.disabled = false;
+      // siweResources.disabled = false;
+      // siweBadDomain.disabled = false;
+      // siweBadAccount.disabled = false;
+      // siweMalformed.disabled = false;
     }
 
-    addEthereumChain.disabled = false;
+    // addEthereumChain.disabled = false;
     switchEthereumChain.disabled = false;
 
     if (isDekeyConnected()) {
