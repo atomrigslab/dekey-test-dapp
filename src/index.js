@@ -736,6 +736,19 @@ const initialize = async () => {
       console.log('result', result);
     };
 
+    getAccountsButton.onclick = async () => {
+      try {
+        const _accounts = await dekey.request({
+          method: 'eth_accounts',
+        });
+        getAccountsResults.innerHTML =
+          _accounts[0] || 'Not able to get accounts';
+      } catch (err) {
+        console.error(err);
+        getAccountsResults.innerHTML = `Error: ${err.message}`;
+      }
+    };
+
     /**
      * Encrypt / Decrypt
      */
