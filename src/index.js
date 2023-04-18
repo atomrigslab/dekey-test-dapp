@@ -360,22 +360,22 @@ const initialize = async () => {
     }
   };
 
-  addEthereumChain.onclick = async () => {
-    await dekey.request({
-      method: 'wallet_addEthereumChain',
-      params: [
-        {
-          chainId: '0xa86a',
-          rpcUrls: ['https://api.avax.network/ext/bc/C/rpc'],
-          chainName: 'Avalanche',
-          nativeCurrency: { name: 'AVAX', decimals: 18, symbol: 'AVAX' },
-          blockExplorerUrls: ['https://snowtrace.io'],
-          // rpcUrls: ['https://127.0.0.1:8546'],
-          // blockExplorerUrls: null,
-        },
-      ],
-    });
-  };
+  // addEthereumChain.onclick = async () => {
+  //   await dekey.request({
+  //     method: 'wallet_addEthereumChain',
+  //     params: [
+  //       {
+  //         chainId: '0xa86a',
+  //         rpcUrls: ['https://api.avax.network/ext/bc/C/rpc'],
+  //         chainName: 'Avalanche',
+  //         nativeCurrency: { name: 'AVAX', decimals: 18, symbol: 'AVAX' },
+  //         blockExplorerUrls: ['https://snowtrace.io'],
+  //         // rpcUrls: ['https://127.0.0.1:8546'],
+  //         // blockExplorerUrls: null,
+  //       },
+  //     ],
+  //   });
+  // };
 
   switchEthereumChain.onclick = async () => {
     await dekey.request({
@@ -737,50 +737,6 @@ const initialize = async () => {
     };
 
     /**
-     * Permissions
-     */
-
-    requestPermissionsButton.onclick = async () => {
-      try {
-        const permissionsArray = await dekey.request({
-          method: 'wallet_requestPermissions',
-          params: [{ eth_accounts: {} }],
-        });
-        permissionsResult.innerHTML =
-          getPermissionsDisplayString(permissionsArray);
-      } catch (err) {
-        console.error(err);
-        permissionsResult.innerHTML = `Error: ${err.message}`;
-      }
-    };
-
-    getPermissionsButton.onclick = async () => {
-      try {
-        const permissionsArray = await dekey.request({
-          method: 'wallet_getPermissions',
-        });
-        permissionsResult.innerHTML =
-          getPermissionsDisplayString(permissionsArray);
-      } catch (err) {
-        console.error(err);
-        permissionsResult.innerHTML = `Error: ${err.message}`;
-      }
-    };
-
-    getAccountsButton.onclick = async () => {
-      try {
-        const _accounts = await dekey.request({
-          method: 'eth_accounts',
-        });
-        getAccountsResults.innerHTML =
-          _accounts[0] || 'Not able to get accounts';
-      } catch (err) {
-        console.error(err);
-        getAccountsResults.innerHTML = `Error: ${err.message}`;
-      }
-    };
-
-    /**
      * Encrypt / Decrypt
      */
 
@@ -942,56 +898,6 @@ const initialize = async () => {
       console.error(err);
       siweResult.innerHTML = `Error: ${err.message}`;
     }
-  };
-
-  /**
-   * Sign In With Ethereum
-   */
-  siwe.onclick = async () => {
-    const domain = window.location.host;
-    const from = accounts[0];
-    const siweMessage = `${domain} wants you to sign in with your Ethereum account:\n${from}\n\nI accept the MetaMask Terms of Service: https://community.metamask.io/tos\n\nURI: https://${domain}\nVersion: 1\nChain ID: 1\nNonce: 32891757\nIssued At: 2021-09-30T16:25:24.000Z`;
-    siweSign(siweMessage);
-  };
-
-  /**
-   * Sign In With Ethereum (with Resources)
-   */
-  siweResources.onclick = async () => {
-    const domain = window.location.host;
-    const from = accounts[0];
-    const siweMessageResources = `${domain} wants you to sign in with your Ethereum account:\n${from}\n\nI accept the MetaMask Terms of Service: https://community.metamask.io/tos\n\nURI: https://${domain}\nVersion: 1\nChain ID: 1\nNonce: 32891757\nIssued At: 2021-09-30T16:25:24.000Z\nNot Before: 2022-03-17T12:45:13.610Z\nRequest ID: some_id\nResources:\n- ipfs://Qme7ss3ARVgxv6rXqVPiikMJ8u2NLgmgszg13pYrDKEoiu\n- https://example.com/my-web2-claim.json`;
-    siweSign(siweMessageResources);
-  };
-
-  /**
-   * Sign In With Ethereum (Bad Domain)
-   */
-  siweBadDomain.onclick = async () => {
-    const domain = 'metamask.badactor.io';
-    const from = accounts[0];
-    const siweMessageBadDomain = `${domain} wants you to sign in with your Ethereum account:\n${from}\n\nI accept the MetaMask Terms of Service: https://community.metamask.io/tos\n\nURI: https://${domain}\nVersion: 1\nChain ID: 1\nNonce: 32891757\nIssued At: 2021-09-30T16:25:24.000Z\nResources:\n- ipfs://Qme7ss3ARVgxv6rXqVPiikMJ8u2NLgmgszg13pYrDKEoiu\n- https://example.com/my-web2-claim.json`;
-    siweSign(siweMessageBadDomain);
-  };
-
-  /**
-   * Sign In With Ethereum (Bad Account)
-   */
-  siweBadAccount.onclick = async () => {
-    const domain = window.location.host;
-    const from = '0x0000000000000000000000000000000000000000';
-    const siweMessageBadDomain = `${domain} wants you to sign in with your Ethereum account:\n${from}\n\nI accept the MetaMask Terms of Service: https://community.metamask.io/tos\n\nURI: https://${domain}\nVersion: 1\nChain ID: 1\nNonce: 32891757\nIssued At: 2021-09-30T16:25:24.000Z\nResources:\n- ipfs://Qme7ss3ARVgxv6rXqVPiikMJ8u2NLgmgszg13pYrDKEoiu\n- https://example.com/my-web2-claim.json`;
-    siweSign(siweMessageBadDomain);
-  };
-
-  /**
-   * Sign In With Ethereum (Malformed)
-   */
-  siweMalformed.onclick = async () => {
-    const domain = window.location.host;
-    const from = accounts[0];
-    const siweMessageMissing = `${domain} wants you to sign in with your Ethereum account:\n${from}\n\nI accept the MetaMask Terms of Service: https://community.metamask.io/tos\n\nVersion: 1\nNonce: 32891757\nIssued At: 2021-09-30T16:25:24Z`;
-    siweSign(siweMessageMissing);
   };
 
   /**
