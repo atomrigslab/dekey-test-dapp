@@ -6,8 +6,7 @@ const Dotenv = require('dotenv-webpack');
 const DOCS = path.resolve(__dirname, 'docs');
 
 module.exports = {
-  devtool: 'eval-source-map',
-  mode: 'development',
+  mode: 'production',
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',
