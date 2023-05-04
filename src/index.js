@@ -51,9 +51,9 @@ const getAccountsButton = document.getElementById('getAccounts');
 const getAccountsResults = document.getElementById('getAccountsResult');
 
 // Permissions Actions Section
-const requestPermissionsButton = document.getElementById('requestPermissions');
-const getPermissionsButton = document.getElementById('getPermissions');
-const permissionsResult = document.getElementById('permissionsResult');
+// const requestPermissionsButton = document.getElementById('requestPermissions');
+// const getPermissionsButton = document.getElementById('getPermissions');
+// const permissionsResult = document.getElementById('permissionsResult');
 
 // Contract Section
 const deployButton = document.getElementById('deployButton');
@@ -140,12 +140,12 @@ const signTypedDataV4Verify = document.getElementById('signTypedDataV4Verify');
 const signTypedDataV4VerifyResult = document.getElementById(
   'signTypedDataV4VerifyResult',
 );
-const siwe = document.getElementById('siwe');
-const siweResources = document.getElementById('siweResources');
-const siweBadDomain = document.getElementById('siweBadDomain');
-const siweBadAccount = document.getElementById('siweBadAccount');
-const siweMalformed = document.getElementById('siweMalformed');
-const siweResult = document.getElementById('siweResult');
+// const siwe = document.getElementById('siwe');
+// const siweResources = document.getElementById('siweResources');
+// const siweBadDomain = document.getElementById('siweBadDomain');
+// const siweBadAccount = document.getElementById('siweBadAccount');
+// const siweMalformed = document.getElementById('siweMalformed');
+// const siweResult = document.getElementById('siweResult');
 
 // Send form section
 const fromDiv = document.getElementById('fromInput');
@@ -162,7 +162,7 @@ const maxPriorityDiv = document.getElementById('maxPriorityDiv');
 const submitFormButton = document.getElementById('submitForm');
 
 // Miscellaneous
-const addEthereumChain = document.getElementById('addEthereumChain');
+// const addEthereumChain = document.getElementById('addEthereumChain');
 const switchEthereumChain = document.getElementById('switchEthereumChain');
 
 const initialize = async () => {
@@ -225,51 +225,54 @@ const initialize = async () => {
   let accounts;
   let accountButtonsInitialized = false;
 
-  const accountButtons = [
-    deployButton,
-    depositButton,
-    withdrawButton,
-    deployCollectiblesButton,
-    mintButton,
-    mintAmountInput,
-    approveTokenInput,
-    approveButton,
-    setApprovalForAllButton,
-    revokeButton,
-    transferTokenInput,
-    transferFromButton,
-    deployFailingButton,
-    sendFailingButton,
-    sendButton,
-    createToken,
-    watchAsset,
-    transferTokens,
-    approveTokens,
-    transferTokensWithoutGas,
-    approveTokensWithoutGas,
-    getEncryptionKeyButton,
-    encryptMessageInput,
-    encryptButton,
-    decryptButton,
-    ethSign,
-    personalSign,
-    personalSignVerify,
-    signTypedData,
-    signTypedDataVerify,
-    signTypedDataV3,
-    signTypedDataV3Verify,
-    signTypedDataV4,
-    signTypedDataV4Verify,
-    siwe,
-    siweResources,
-    siweBadDomain,
-    siweBadAccount,
-    siweMalformed,
-  ];
+  // const accountButtons = [
+  //   deployButton,
+  //   depositButton,
+  //   withdrawButton,
+  //   deployCollectiblesButton,
+  //   mintButton,
+  //   mintAmountInput,
+  //   approveTokenInput,
+  //   approveButton,
+  //   setApprovalForAllButton,
+  //   revokeButton,
+  //   transferTokenInput,
+  //   transferFromButton,
+  //   deployFailingButton,
+  //   sendFailingButton,
+  //   sendButton,
+  //   createToken,
+  //   watchAsset,
+  //   transferTokens,
+  //   approveTokens,
+  //   transferTokensWithoutGas,
+  //   approveTokensWithoutGas,
+  //   getEncryptionKeyButton,
+  //   encryptMessageInput,
+  //   encryptButton,
+  //   decryptButton,
+  //   ethSign,
+  //   personalSign,
+  //   personalSignVerify,
+  //   signTypedData,
+  //   signTypedDataVerify,
+  //   signTypedDataV3,
+  //   signTypedDataV3Verify,
+  //   signTypedDataV4,
+  //   signTypedDataV4Verify,
+  //   siwe,
+  //   siweResources,
+  //   siweBadDomain,
+  //   siweBadAccount,
+  //   siweMalformed,
+  // ];
 
   // const isMetaMaskConnected = () => accounts && accounts.length > 0;
 
-  const isDekeyConnected = () => window.location !== window.parent.location;
+  const isDekeyConnected = () =>
+    window.location !== window.parent.location &&
+    accounts &&
+    accounts.length > 0;
 
   const onClickConnect = async () => {
     try {
@@ -282,20 +285,20 @@ const initialize = async () => {
     }
   };
 
-  const clearTextDisplays = () => {
-    encryptionKeyDisplay.innerText = '';
-    encryptMessageInput.value = '';
-    ciphertextDisplay.innerText = '';
-    cleartextDisplay.innerText = '';
-  };
+  // const clearTextDisplays = () => {
+  //   encryptionKeyDisplay.innerText = '';
+  //   encryptMessageInput.value = '';
+  //   ciphertextDisplay.innerText = '';
+  //   cleartextDisplay.innerText = '';
+  // };
 
   const updateButtons = () => {
     const accountButtonsDisabled = !isDekeyConnected();
     if (accountButtonsDisabled) {
-      for (const button of accountButtons) {
-        button.disabled = true;
-      }
-      clearTextDisplays();
+      // for (const button of accountButtons) {
+      //   button.disabled = true;
+      // }
+      // clearTextDisplays();
     } else {
       deployButton.disabled = false;
       deployCollectiblesButton.disabled = false;
@@ -898,20 +901,20 @@ const initialize = async () => {
    * Sign In With Ethereum helper
    */
 
-  const siweSign = async (siweMessage) => {
-    try {
-      const from = accounts[0];
-      const msg = `0x${Buffer.from(siweMessage, 'utf8').toString('hex')}`;
-      const sign = await dekey.request({
-        method: 'personal_sign',
-        params: [msg, from, 'Example password'],
-      });
-      siweResult.innerHTML = sign;
-    } catch (err) {
-      console.error(err);
-      siweResult.innerHTML = `Error: ${err.message}`;
-    }
-  };
+  // const siweSign = async (siweMessage) => {
+  //   try {
+  //     const from = accounts[0];
+  //     const msg = `0x${Buffer.from(siweMessage, 'utf8').toString('hex')}`;
+  //     const sign = await dekey.request({
+  //       method: 'personal_sign',
+  //       params: [msg, from, 'Example password'],
+  //     });
+  //     siweResult.innerHTML = sign;
+  //   } catch (err) {
+  //     console.error(err);
+  //     siweResult.innerHTML = `Error: ${err.message}`;
+  //   }
+  // };
 
   /**
    * Personal Sign Verify
@@ -1400,15 +1403,15 @@ window.addEventListener('load', initialize);
 
 // utils
 
-function getPermissionsDisplayString(permissionsArray) {
-  if (permissionsArray.length === 0) {
-    return 'No permissions found.';
-  }
-  const permissionNames = permissionsArray.map((perm) => perm.parentCapability);
-  return permissionNames
-    .reduce((acc, name) => `${acc}${name}, `, '')
-    .replace(/, $/u, '');
-}
+// function getPermissionsDisplayString(permissionsArray) {
+//   if (permissionsArray.length === 0) {
+//     return 'No permissions found.';
+//   }
+//   const permissionNames = permissionsArray.map((perm) => perm.parentCapability);
+//   return permissionNames
+//     .reduce((acc, name) => `${acc}${name}, `, '')
+//     .replace(/, $/u, '');
+// }
 
 function stringifiableToHex(value) {
   return ethers.utils.hexlify(Buffer.from(JSON.stringify(value)));
