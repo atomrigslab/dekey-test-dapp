@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NFT Detail</title>
+  </head>
+  <body>
+    <button onclick="onClickConnect()">Connect</button>
+
+    <script src="bundle.js" defer></script>
+    <script>
+      const onClickConnect = async () => {
+        try {
+          const newAccounts = await dekey.request({
+            method: 'eth_requestAccounts',
+          });
+          console.log('newAccounts', newAccounts)
+        } catch (error) {
+          console.error(error);
+        }
+      };
+    </script>
+  </body>
+</html>
