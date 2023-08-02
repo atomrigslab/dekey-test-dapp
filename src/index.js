@@ -21,7 +21,16 @@ import {
 } from './constants.json';
 
 // eslint-disable-next-line node/no-process-env
-window.initializeDekeyProvider(process.env.WALLET_DOMAIN);
+(async () => {
+  try {
+    const initDekeyResult = await window.initializeDekeyProvider(
+      process.env.WALLET_DOMAIN,
+    );
+    console.log('initDekeyResult', initDekeyResult);
+  } catch (error) {
+    console.error(error);
+  }
+})();
 
 let ethersProvider;
 let hstFactory;
@@ -921,7 +930,8 @@ const initialize = async () => {
    * Personal Sign Verify
    */
   personalSignVerify.onclick = async () => {
-    const exampleMessage = 'Example `personal_sign` message';
+    const exampleMessage =
+      'Example `personal_sign` message \n message after new line';
     try {
       const from = accounts[0];
       const msg = `0x${Buffer.from(exampleMessage, 'utf8').toString('hex')}`;
