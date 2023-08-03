@@ -115,6 +115,7 @@ const getEncryptionKeyButton = document.getElementById(
 const encryptMessageInput = document.getElementById('encryptMessageInput');
 const encryptButton = document.getElementById('encryptButton');
 const decryptButton = document.getElementById('decryptButton');
+const getNFTsButton = document.getElementById('getNFTsButton');
 const encryptionKeyDisplay = document.getElementById('encryptionKeyDisplay');
 const ciphertextDisplay = document.getElementById('ciphertextDisplay');
 const cleartextDisplay = document.getElementById('cleartextDisplay');
@@ -1302,6 +1303,17 @@ const initialize = async () => {
     } catch (err) {
       console.error(err);
       signTypedDataV4VerifyResult.innerHTML = `Error: ${err.message}`;
+    }
+  };
+
+  getNFTsButton.onclick = async () => {
+    try {
+      const result = await dekey.request({
+        method: 'eth_getNFTs',
+      });
+      console.log('eth_getNFTs result', result);
+    } catch (error) {
+      console.error(error);
     }
   };
 
