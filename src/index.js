@@ -1306,10 +1306,22 @@ const initialize = async () => {
     }
   };
 
+  // owner: string;
+  // nextCursor?: string;
+  // network?: string;
+  // size?: number;
+
   getNFTsButton.onclick = async () => {
     try {
       const result = await dekey.request({
         method: 'eth_getNFTs',
+        params: [
+          {
+            owner: '0x982018086c722A9069f8c091336981931a963B81',
+            network: 'SKT',
+            size: 100,
+          },
+        ],
       });
       console.log('eth_getNFTs result', result);
     } catch (error) {
