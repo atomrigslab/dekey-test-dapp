@@ -116,6 +116,7 @@ const encryptMessageInput = document.getElementById('encryptMessageInput');
 const encryptButton = document.getElementById('encryptButton');
 const decryptButton = document.getElementById('decryptButton');
 const getNFTsButton = document.getElementById('getNFTsButton');
+const getNFTItemButton = document.getElementById('getNFTItemButton');
 const encryptionKeyDisplay = document.getElementById('encryptionKeyDisplay');
 const ciphertextDisplay = document.getElementById('ciphertextDisplay');
 const cleartextDisplay = document.getElementById('cleartextDisplay');
@@ -1324,6 +1325,18 @@ const initialize = async () => {
         ],
       });
       console.log('eth_getNFTs result', result);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  getNFTItemButton.onclick = async () => {
+    try {
+      const result = await dekey.request({
+        method: 'eth_getNFTItem',
+        params: ['3326'],
+      });
+      console.log('eth_getNFTItem result', result);
     } catch (error) {
       console.error(error);
     }
