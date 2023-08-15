@@ -13,7 +13,7 @@
     "lint": "yarn lint:eslint && yarn lint:misc --check",
     "lint:fix": "yarn lint:eslint --fix && yarn lint:misc --write",
     "start": "webpack-dev-server",
-    "build": "webpack --mode production",
+    "build": "export NODE_OPTIONS=--openssl-legacy-provider && webpack --mode production",
     "test": "yarn lint",
     "prepublishOnly": "yarn test && yarn build"
   },
@@ -34,7 +34,7 @@
   },
   "homepage": "https://metamask.github.io/test-dapp",
   "dependencies": {
-    "@atomrigslab/dekey-web-wallet-provider": "0.0.16"
+    "@atomrigslab/dekey-web-wallet-provider": "^1.0.0-beta.1"
   },
   "devDependencies": {
     "@lavamoat/allow-scripts": "^1.0.6",
