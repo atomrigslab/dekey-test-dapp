@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/@aashutoshrathi/word-wrap/-/word-wrap-1.2.6.tgz#bd9154aec9983f77b3a034ecaa015c2e4201f6cf"
   integrity sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==
 
-"@atomrigslab/dekey-web-wallet-provider@1.0.0-beta.2":
-  version "1.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/@atomrigslab/dekey-web-wallet-provider/-/dekey-web-wallet-provider-1.0.0-beta.2.tgz#81b8ac2aab92b77054c95b040130091b9c610285"
-  integrity sha512-7xD6kwKcZQwj6k+kpqkFgwCkdMP3XLkOO+GnwYxXeQdtOcyev05m1tr3jd4lZ1RTyLQUxj6lAXl/7YdLkNADxA==
+"@atomrigslab/dekey-web-wallet-provider@1.0.0-beta.3":
+  version "1.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/@atomrigslab/dekey-web-wallet-provider/-/dekey-web-wallet-provider-1.0.0-beta.3.tgz#6aeaed44c1e53a866e5d970a88cf3f6601cd8698"
+  integrity sha512-EGujHnKM2SnZOeR3HQlxcH1DenIOUfAJ7OPzfKtaDfPZdgjYxFS48BUvQLwOXQmc7lhdSDeT76vncGCNg2ovIw==
   dependencies:
     "@atomrigslab/providers" "1.0.1"
 
