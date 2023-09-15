@@ -117,6 +117,8 @@ const encryptButton = document.getElementById('encryptButton');
 const decryptButton = document.getElementById('decryptButton');
 const getNFTsButton = document.getElementById('getNFTsButton');
 const getNFTItemButton = document.getElementById('getNFTItemButton');
+const showFabButton = document.getElementById('showFabButton');
+const hideFabButton = document.getElementById('hideFabButton');
 const encryptionKeyDisplay = document.getElementById('encryptionKeyDisplay');
 const ciphertextDisplay = document.getElementById('ciphertextDisplay');
 const cleartextDisplay = document.getElementById('cleartextDisplay');
@@ -1340,6 +1342,18 @@ const initialize = async () => {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  showFabButton.onclick = async () => {
+    await dekey.request({
+      method: 'eth_showFabButton',
+    });
+  };
+
+  hideFabButton.onclick = async () => {
+    await dekey.request({
+      method: 'eth_hideFabButton',
+    });
   };
 
   function handleNewAccounts(newAccounts) {
