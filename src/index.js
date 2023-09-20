@@ -23,12 +23,11 @@ import {
 // eslint-disable-next-line node/no-process-env
 (async () => {
   try {
-    const opts = {
-      showFabButton: false,
-    };
+    // const opts = {
+    //   timeout: 2000,
+    // };
     const initDekeyResult = await window.initializeDekeyProvider(
       process.env.WALLET_DOMAIN,
-      opts,
     );
     console.log('initDekeyResult', initDekeyResult);
   } catch (error) {
