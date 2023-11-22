@@ -34,7 +34,7 @@
   },
   "homepage": "https://metamask.github.io/test-dapp",
   "dependencies": {
-    "@atomrigslab/dekey-web-wallet-provider": "1.0.0-beta.5"
+    "@atomrigslab/dekey-web-wallet-provider": "1.1.0"
   },
   "devDependencies": {
     "@lavamoat/allow-scripts": "^1.0.6",
